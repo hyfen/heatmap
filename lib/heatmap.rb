@@ -1,6 +1,6 @@
 module Heatmap
-  require 'heatmap/map'
-  require 'heatmap/version'
-  require 'heatmap/mercator'
-  require 'heatmap/point'  
+  require_relative 'heatmap/map'
+  require_relative 'heatmap/version'
+  require_relative 'heatmap/mercator'
+  require_relative 'heatmap/point'  
 end

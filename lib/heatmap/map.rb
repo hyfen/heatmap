@@ -2,6 +2,8 @@ module Heatmap
 
   require 'rmagick'
 
+  ASSET_DIR = File.expand_path(File.join(File.dirname(__FILE__), '../..', 'examples'))
+
   class Map
     attr_reader :width, :height
     attr_accessor :points
@@ -12,7 +14,8 @@ module Heatmap
       @points = []
       @output = Magick::Image.new(@width, @height)
     
-      @dot = Magick::Image.read("./examples/dots/dot.png")[0]
+      default_dot_image = File.join(ASSET_DIR, "dots", "dot.png")
+      @dot = Magick::Image.read(default_dot_image)[0]
     end
 
     def generate(filename="output.png")
@@ -30,7 +33,8 @@ module Heatmap
     end
     
     def colorize!
-      clut = Magick::Image.read("./examples/gradients/classic.png")[0]
+      default_clut_image = File.join(ASSET_DIR, "gradients", "classic.png")
+      clut = Magick::Image.read(default_clut_image)[0]
     	@output.clut_channel(clut)
     end
     
