@@ -16,18 +16,24 @@ module Heatmap
     end
 
     def generate(filename="output.png")
-      self.generate_map
+      generate_map!
+      colorize!
       @output.write(filename)
     end
-
+    
     protected
 
-    def generate_map
+    def generate_map!
       @points.each do |point|
-        @output.composite!(@dot, Magick::CenterGravity, point.x, point.y, Magick::OverCompositeOp)      
+        @output.composite!(@dot, Magick::NorthWestGravity, point.x, point.y, Magick::OverCompositeOp)      
       end
     end
-
+    
+    def colorize!
+      clut = Magick::Image.read("./examples/gradients/classic.png")[0]
+    	@output.clut_channel(clut)
+    end
+    
   end
 
 end
