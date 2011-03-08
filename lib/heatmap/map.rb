@@ -1,5 +1,7 @@
 module Heatmap
 
+  require 'rmagick'
+
   class Map
     attr_reader :width, :height
     attr_accessor :points
@@ -11,9 +13,6 @@ module Heatmap
       @output = Magick::Image.new(@width, @height)
     
       @dot = Magick::Image.read("./examples/dots/dot.png")[0]
-    
-      puts "blah"
-    
     end
 
     def generate(filename="output.png")
