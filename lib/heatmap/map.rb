@@ -12,30 +12,31 @@ module Heatmap
       @width = width
       @height = height
       @points = []
-      @output = Magick::Image.new(@width, @height)
-    
       default_dot_image = File.join(ASSET_DIR, "dots", "dot.png")
       @dot = Magick::Image.read(default_dot_image)[0]
     end
 
-    def generate(filename="output.png")
-      generate_map!
-      colorize!
-      @output.write(filename)
+    def output(filename="output.png")
+      @heatmap = Magick::Image.new(@width, @height)
+      @heatmap = generate_map(@heatmap)
+      @heatmap = colorize(@heatmap)
+      @heatmap.write(filename)
     end
     
     protected
 
-    def generate_map!
+    def generate_map(heatmap)
       @points.each do |point|
-        @output.composite!(@dot, Magick::NorthWestGravity, point.x, point.y, Magick::OverCompositeOp)      
+        heatmap.composite!(@dot, Magick::NorthWestGravity, point.x, point.y, Magick::OverCompositeOp)      
       end
+      return heatmap
     end
     
-    def colorize!
-      default_clut_image = File.join(ASSET_DIR, "gradients", "classic.png")
+    def colorize(heatmap)
+      default_clut_image = File.join(ASSET_DIR, "gradients", "fire.png")
       clut = Magick::Image.read(default_clut_image)[0]
-    	@output.clut_channel(clut)
+      heatmap.clut_channel(clut, Magick::AllChannels)
+      return heatmap
     end
     
   end
