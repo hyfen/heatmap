@@ -1,32 +1,30 @@
 # Ruby Heatmaps
 
-A gem (note: it's not nearly a gem yet) to generate [heatmaps](http://www.google.ca/images?um=1&hl=en&q=heatmap&aq=f&aqi=&aql=&oq=).
+A gem to generate [heatmaps](http://www.google.ca/images?um=1&hl=en&q=heatmap&aq=f&aqi=&aql=&oq=).
 
-## Goal
-
-Turning something like the following into a useful gem: 
+## Usage
 
 	require 'rubygems'
-	require 'rmagick'
+	require 'heatmap'
+	
+	heatmap = Heatmap::Map.new(300,200)
+	
+	heatmap.points << Heatmap::Point.new(0, 5, 1)
+	heatmap.points << Heatmap::Point.new(80, 5, 1)
+	heatmap.points << Heatmap::Point.new(10, 5, 1)
+	heatmap.points << Heatmap::Point.new(23, 5, 1)
+	heatmap.points << Heatmap::Point.new(50, 50, 1)
+	heatmap.points << Heatmap::Point.new(20, 10, 1)
+	heatmap.points << Heatmap::Point.new(100, 85, 1)
+	heatmap.points << Heatmap::Point.new(100, 60, 1)
+	heatmap.points << Heatmap::Point.new(90, 90, 1)
 
-	output = Magick::Image.new(500, 500)
-	dot = Magick::Image.read("dots/dot.png")[0]
-	clut = Magick::Image.read("gradients/classic.png")[0]
-
-	output.composite!(dot, Magick::CenterGravity, 90, 135, Magick::OverCompositeOp)
-	output.composite!(dot, Magick::CenterGravity, 20, 155, Magick::OverCompositeOp)
-	output.composite!(dot, Magick::CenterGravity, -14, 115, Magick::OverCompositeOp)
-	output.composite!(dot, Magick::CenterGravity, 40, 135, Magick::OverCompositeOp)
-
-	# apply the gradient map
-	output.clut_channel(clut)
-
-	output.write("heatmap.png")
+	heatmap.output("output.png")
 
 
 ### Sample output
 
-![Sample Heatmap](http://dl.dropbox.com/u/1144778/screencaps/cap_03042011_190002.png)
+![Sample Heatmap](http://dl.dropbox.com/u/1144778/heatmap/output.png)
 
 ## Inspiration
 
@@ -35,6 +33,6 @@ Turning something like the following into a useful gem:
 
 ## TODOs
 
-- actually abstract out the sample code into a proper Heatmap class
-- package it into a gem
+- customizability
+- implement support for point intensities (light vs dark spots) 
 - generate tiles useful for Google Map mashups
