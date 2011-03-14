@@ -13,9 +13,7 @@ module Heatmap
     attr_reader :width, :height
     attr_accessor :points
 
-    def initialize(width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT)
-      @width = width
-      @height = height
+    def initialize()
       @points = []
     end
 
@@ -29,44 +27,14 @@ module Heatmap
 
     def output(filename=DEFAULT_OUTPUT_FILE)
       @dot_image_file || self.dot_image=DEFAULT_DOT_IMAGE
-      @width, @height = points_bounds
+      @width, @height = self.points_bounds
       @heatmap = Magick::Image.new(@width, @height)
       generate_map
       colorize
       @heatmap.write(filename)
     end
-    
-    def max_x
-      points.max {|a,b|
-        a.x <=> b.x
-      }.x
-    end
-    
-    def min_x
-      points.min {|a,b|
-        a.x <=> b.x
-      }.x
-    end
-
-    def max_y
-      points.max {|a,b|
-        a.y <=> b.y
-      }.y
-    end
-    
-    def min_y
-      points.min {|a,b|
-        a.y <=> b.y
-      }.y
-    end
-    
-    def point_bounds
-      dot_radius = @dot_image_file.rows
-      return max_x + dot_radius, max_y + dot_radius
-    end
-    
+        
     protected
-
 
     def generate_map
       @points.each do |point|
@@ -77,7 +45,30 @@ module Heatmap
     def colorize
       @clut_image_file || self.clut_image=(DEFAULT_CLUT_IMAGE)
       @heatmap.clut_channel(@clut_image_file, Magick::AllChannels)
-    end 
+    end
+
+    # figure out the boundaries based on the positions of the @points
+    # doesn't take into account minimum values for now
+    def points_bounds
+      dot_width = @dot_image_file.rows
+      return max_x + dot_width, max_y + dot_width
+    end
+
+    def max_x
+      @points.max {|a,b| a.x <=> b.x }.x
+    end
+    
+    def min_x
+      @points.min {|a,b| a.x <=> b.x }.x
+    end
+
+    def max_y
+      @points.max {|a,b| a.y <=> b.y }.y
+    end
+    
+    def min_y
+      @points.min {|a,b| a.y <=> b.y }.y
+    end
     
   end
   

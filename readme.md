@@ -6,7 +6,7 @@ A gem to generate [heatmaps](http://www.google.ca/images?um=1&hl=en&q=heatmap&aq
 
 	require 'heatmap'
 	
-	heatmap = Heatmap::Map.new(300,200)
+	heatmap = Heatmap::Map.new
 	
 	heatmap.points << Heatmap::Point.new(0, 5)
 	heatmap.points << Heatmap::Point.new(80, 5)
@@ -35,7 +35,7 @@ A gem to generate [heatmaps](http://www.google.ca/images?um=1&hl=en&q=heatmap&aq
 In IRB:
 
 	require 'heatmap'
-	heatmap = Heatmap::Map.new(300,200)
+	heatmap = Heatmap::Map.new
 
 ## Inspiration
 
