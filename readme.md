@@ -8,15 +8,15 @@ A gem to generate [heatmaps](http://www.google.ca/images?um=1&hl=en&q=heatmap&aq
 	
 	heatmap = Heatmap::Map.new(300,200)
 	
-	heatmap.points << Heatmap::Point.new(0, 5, 1)
-	heatmap.points << Heatmap::Point.new(80, 5, 1)
-	heatmap.points << Heatmap::Point.new(10, 5, 1)
-	heatmap.points << Heatmap::Point.new(23, 5, 1)
-	heatmap.points << Heatmap::Point.new(50, 50, 1)
-	heatmap.points << Heatmap::Point.new(20, 10, 1)
-	heatmap.points << Heatmap::Point.new(100, 85, 1)
-	heatmap.points << Heatmap::Point.new(100, 60, 1)
-	heatmap.points << Heatmap::Point.new(90, 90, 1)
+	heatmap.points << Heatmap::Point.new(0, 5)
+	heatmap.points << Heatmap::Point.new(80, 5)
+	heatmap.points << Heatmap::Point.new(10, 5)
+	heatmap.points << Heatmap::Point.new(23, 5)
+	heatmap.points << Heatmap::Point.new(50, 50)
+	heatmap.points << Heatmap::Point.new(20, 10)
+	heatmap.points << Heatmap::Point.new(100, 85)
+	heatmap.points << Heatmap::Point.new(100, 60)
+	heatmap.points << Heatmap::Point.new(90, 90)
 
 	heatmap.output("output.png")
 
