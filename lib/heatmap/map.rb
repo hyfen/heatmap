@@ -28,16 +28,47 @@ module Heatmap
     end      
 
     def output(filename=DEFAULT_OUTPUT_FILE)
+      @dot_image_file || self.dot_image=DEFAULT_DOT_IMAGE
+      @width, @height = points_bounds
       @heatmap = Magick::Image.new(@width, @height)
       generate_map
       colorize
       @heatmap.write(filename)
     end
     
+    def max_x
+      points.max {|a,b|
+        a.x <=> b.x
+      }.x
+    end
+    
+    def min_x
+      points.min {|a,b|
+        a.x <=> b.x
+      }.x
+    end
+
+    def max_y
+      points.max {|a,b|
+        a.y <=> b.y
+      }.y
+    end
+    
+    def min_y
+      points.min {|a,b|
+        a.y <=> b.y
+      }.y
+    end
+    
+    def point_bounds
+      dot_radius = @dot_image_file.rows
+      return max_x + dot_radius, max_y + dot_radius
+    end
+    
     protected
 
+
     def generate_map
-      @dot_image_file || self.dot_image=DEFAULT_DOT_IMAGE      
       @points.each do |point|
         @heatmap.composite!(@dot_image_file, Magick::NorthWestGravity, point.x, point.y, Magick::OverCompositeOp)      
       end
