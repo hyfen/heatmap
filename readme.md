@@ -4,7 +4,6 @@ A gem to generate [heatmaps](http://www.google.ca/images?um=1&hl=en&q=heatmap&aq
 
 ## Usage
 
-	require 'rubygems'
 	require 'heatmap'
 	
 	heatmap = Heatmap::Map.new(300,200)
@@ -25,6 +24,18 @@ A gem to generate [heatmaps](http://www.google.ca/images?um=1&hl=en&q=heatmap&aq
 ### Sample output
 
 ![Sample Heatmap](http://dl.dropbox.com/u/1144778/heatmap/output.png)
+
+## Giving it a whirl
+
+	$ git clone git@github.com:hyfen/heatmap.git
+	$ cd heatmap
+	$ rake build
+	$ gem install pkg/heatmap-0.0.1.gem
+	
+In IRB:
+
+	require 'heatmap'
+	heatmap = Heatmap::Map.new(300,200)
 
 ## Inspiration
 
