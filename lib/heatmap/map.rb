@@ -5,10 +5,8 @@ module Heatmap
   class Map
     ASSET_DIR = File.expand_path(File.join(File.dirname(__FILE__), '../..', 'examples'))
     DEFAULT_DOT_IMAGE = File.join(ASSET_DIR, "dots", "dot.png")
-    DEFAULT_CLUT_IMAGE = File.join(ASSET_DIR, "gradients", "fire.png")
+    DEFAULT_CLUT_IMAGE = File.join(ASSET_DIR, "gradients", "classic.png")
     DEFAULT_OUTPUT_FILE = "output.png"
-    DEFAULT_WIDTH = 300
-    DEFAULT_HEIGHT = 200
     
     attr_reader :width, :height
     attr_accessor :points
@@ -38,7 +36,7 @@ module Heatmap
 
     def generate_map
       @points.each do |point|
-        @heatmap.composite!(@dot_image_file, Magick::NorthWestGravity, point.x, point.y, Magick::OverCompositeOp)      
+        @heatmap = @heatmap.dissolve(@dot_image_file, point.intensity, 1, Magick::NorthWestGravity, point.x, point.y)
       end
     end
     
