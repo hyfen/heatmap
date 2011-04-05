@@ -8,17 +8,17 @@ A gem to generate [heatmaps](http://www.google.ca/images?um=1&hl=en&q=heatmap&aq
 	
 	heatmap = Heatmap::Map.new
 	
-	h.points << Heatmap::Point.new(0, 0, 0.1)
-	h.points << Heatmap::Point.new(80, 5, 0.3)
-	h.points << Heatmap::Point.new(10, 5, 0.2)
-	h.points << Heatmap::Point.new(23, 5, 0.8)
-	h.points << Heatmap::Point.new(50, 50, 0.9)
-	h.points << Heatmap::Point.new(20, 10, 0.9)
-	h.points << Heatmap::Point.new(100, 85, 1.0)
-	h.points << Heatmap::Point.new(100, 60, 1.0)
-	h.points << Heatmap::Point.new(90, 90, 1.0)
-	h.points << Heatmap::Point.new(90, 30, 0.8)
-	h.points << Heatmap::Point.new(90, 45, 0.9)
+	heatmap.points << Heatmap::Point.new(0, 0, 0.1)
+	heatmap.points << Heatmap::Point.new(80, 5, 0.3)
+	heatmap.points << Heatmap::Point.new(10, 5, 0.2)
+	heatmap.points << Heatmap::Point.new(23, 5, 0.8)
+	heatmap.points << Heatmap::Point.new(50, 50, 0.9)
+	heatmap.points << Heatmap::Point.new(20, 10, 0.9)
+	heatmap.points << Heatmap::Point.new(100, 85, 1.0)
+	heatmap.points << Heatmap::Point.new(100, 60, 1.0)
+	heatmap.points << Heatmap::Point.new(90, 90, 1.0)
+	heatmap.points << Heatmap::Point.new(90, 30, 0.8)
+	heatmap.points << Heatmap::Point.new(90, 45, 0.9)
 
 	heatmap.output("output.png")
 
