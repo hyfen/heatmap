@@ -12,7 +12,7 @@ module Heatmap
       @intensity = intensity
     end
 
-    def self.from_lat_lng(lat, lng, zoom, intensity)
+    def self.from_lat_lng(lat, lng, zoom, intensity=DEFAULT_INTENSITY)
       x = Heatmap::Mercator.lng_to_x(lng, zoom)
       y = Heatmap::Mercator.lat_to_y(lat, zoom)
       new(x, y, intensity)
