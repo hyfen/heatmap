@@ -1,6 +1,6 @@
 module Heatmap
 
-  require 'rmagick'
+  require 'RMagick'
 
   class Map
     ASSET_DIR = File.expand_path(File.join(File.dirname(__FILE__), '../..', 'examples'))
