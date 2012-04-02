@@ -42,6 +42,7 @@ module Heatmap
     def generate_map
       @points.each do |point|
         @heatmap = @heatmap.dissolve(@dot_image_file, point.intensity, 1, Magick::NorthWestGravity, point.x, point.y)
+        GC.start  # prevent rmagick from leaking memory
       end
     end
 
