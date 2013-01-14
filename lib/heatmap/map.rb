@@ -11,7 +11,9 @@ module Heatmap
     attr_reader :width, :height
     attr_accessor :points
 
-    def initialize()
+    def initialize(args={})
+      @width = args[:width]
+      @height = args[:height]
       @points = []
     end
 
@@ -25,7 +27,9 @@ module Heatmap
 
     def output(format = "png", filename=nil)
       @dot_image_file || self.dot_image=DEFAULT_DOT_IMAGE
-      @width, @height = self.points_bounds
+      unless @width && @height
+        @width, @height = self.points_bounds
+      end
       @heatmap = Magick::Image.new(@width, @height)
       @heatmap.format = format
       generate_map
